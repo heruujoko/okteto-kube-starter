@@ -1,4 +1,4 @@
-#Deployment guide
+# Deployment guide
 
 1. Download your Kubernetes credentials from the Okteto Cloud UI https://okteto.com/docs/cloud/credentials/index.html
 
