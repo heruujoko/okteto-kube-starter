@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
+const os = require('os');
  
 app.get('/', function (req, res) {
   res.json({
       name: "test-app",
-      version: "1.0.0"
+      version: "1.0.0",
+      host: os.hostname()
   })
 })
  
