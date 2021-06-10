@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasura-try
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hasura-try
+  template:
+    metadata:
+      labels:
+        app: hasura-try
+    spec:
+      containers:
+      - image: hasura/graphql-engine:latest
+        name: hasura-try
+        env:
+          - name: HASURA_GRAPHQL_DATABASE_URL
+            value: postgres://user:pass@host:5432/db
+          - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+            value: "true"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hasura-try
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: LoadBalancer  
+  ports:
+  - name: "hasura-try"
+    port: 8080
+  selector:
+    app: hasura-try
